@@ -2,8 +2,8 @@
   <div id="app">
     <div class="container">
       <ul>
-        <li v-for="item in items" :key="item.idx">
-          <CheckboxItem :item="item" />
+        <li v-for="(item, idx) in items" :key="idx">
+          <CheckboxCategory @change="handleChange($event, idx)" :item="item" />
         </li>
       </ul>
     </div>
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import CheckboxItem from "./components/CheckboxItem";
+import CheckboxCategory from "./components/CheckboxCategory";
 export default {
   name: "App",
   components: {
-    CheckboxItem,
+    CheckboxCategory,
   },
   data() {
     return {
@@ -60,6 +60,17 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleChange(e, idx) {
+      this.items[idx] = e;
+    },
+  },
+
+  watch: {
+    items() {
+      console.log("changed");
+    },
   },
 };
 </script>

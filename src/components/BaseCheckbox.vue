@@ -1,6 +1,12 @@
 <template>
   <div>
-    <input type="checkbox" v-model="model" :checked="checked" />
+    <input
+      ref="checkbox"
+      type="checkbox"
+      :checked="checked"
+      @change="$emit('change', $event.target.checked)"
+      :indeterminate.prop="indeterminate"
+    />
     <label for="title">{{ title }}</label>
   </div>
 </template>
@@ -8,29 +14,22 @@
 <script>
 export default {
   name: "BaseCheckbox",
+
+  model: {
+    prop: "checked",
+    event: "change",
+  },
   props: {
     title: String,
     checked: Boolean,
+    indeterminate: Boolean,
   },
-  methods: {
-    handleChange() {
-      this.checkedVal = !this.checkedVal;
-
-      this.$emit("change", this.checkedVal);
-    },
+  data() {
+    return {};
   },
-  computed: {
-    model: {
-      get() {
-        console.log("get");
-        return this.checked;
-      },
-      set(value) {
-        console.log("set", value);
-        this.$emit("input", value);
-      },
-    },
-  },
+  methods: {},
+  computed: {},
+  watch: {},
 };
 </script>
 
