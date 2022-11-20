@@ -31,7 +31,7 @@ export default {
               title: "title",
               checked: false,
               categories: [
-                { title: "title_true", checked: true },
+                { title: "title", checked: true },
                 { title: "title", checked: false },
                 { title: "title", checked: false },
                 { title: "title", checked: false },
